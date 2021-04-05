@@ -31,7 +31,18 @@
     "typescript": "^4.2.3",
     "vite": "^2.0.1"
   },
-   "commitlint": {
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
@@ -41,11 +52,6 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,tsx,ts,json}": [
-      "prettier --write"
-    ]
   },
   "config": {
     "commitizen": {
