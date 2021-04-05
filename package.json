@@ -4,7 +4,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.1.7",
@@ -34,8 +35,11 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "**/*.{js,jsx,tsx,ts,json}": [
+    "*.{js,jsx,less,md,json}": [
       "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
     ]
   },
   "commitlint": {
