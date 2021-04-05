@@ -1,2 +1,2 @@
-# react with vite2 typescripts
+# react with vite2 typeScript
 
