@@ -63,7 +63,6 @@ export default TableHoc((props: any) => {
 
     return (
         <>
-        this is index
             <Table changeData={changeData} columns={columns} formData={formData} {...params} />
         </>
     )
