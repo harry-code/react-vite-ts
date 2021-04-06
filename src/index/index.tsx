@@ -64,7 +64,7 @@ export default TableHoc((props: any) => {
 
     return (
         <>
-            <Table changeData={changeData} columns={columns} formData={formData} {...params} />
+            <Table changeData={changeData} columns={columns} formData={formData} {...params} addUrl={'/add'} />
         </>
     )
 }, List)

@@ -1,6 +1,7 @@
-import { Pagination, Table } from 'antd';
+import { Pagination, Table, Button } from 'antd';
 import HeadForm from '~/components/common/headForm';
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import './index.less'
 // 表格组件与分页组件组合
 
@@ -11,19 +12,27 @@ interface props {
     columns?: any | [];
     data?: any | [];
     formData: any[];
+    addTitle: string;
+    addUrl?: string;
 }
 
 
-export default ({ changeData, loading, columns, data, total, formData }: props) => {
-    // 渲染columns最后一列
+export default ({ changeData, loading, columns, data, total, formData, addTitle = '新增', addUrl = '' }: props) => {
+    // 渲染columns最后一列 操作
     useMemo(() => {
-        const actionObj = columns.find((i: { key: string; }) => i.key === 'action') || {};
+        const actionObj = columns.find((i: { key: string; }) => i.key === 'action') ?? {};
         actionObj.render = () => (
             <>
-                {actionObj.btns.map((ite: any) => <span className="action-btn">{ite}</span>)}
+                {actionObj.btns.map((ite: any) => <span className="action-btn" key={ite}>{ite}</span>)}
             </>
         )
     }, [columns])
+    // 渲染新增等按钮
+    const renderAdd = () => {
+        return (
+            addTitle ? (<Link to={addUrl}>{addTitle}</Link>) : null
+        )
+    }
     // 头部筛选栏参数
     const [headParams, setParams] = useState({})
 
@@ -39,6 +48,7 @@ export default ({ changeData, loading, columns, data, total, formData }: props) 
     return (
         <div className="table-list-page">
             <HeadForm formData={formData} getParams={getParams} />
+            {renderAdd()}
             <Table
                 loading={loading}
                 columns={columns}

@@ -4,8 +4,8 @@ import './index.less'
 // 列表页的筛选 主要又输入框、下拉框、时间选择框组成
 const { Option } = Select;
 interface props {
-   formData: any[];
-   getParams: (data: Object) => void;
+    formData: any[];
+    getParams: (data: Object) => void;
 }
 
 export default ({ formData, getParams }: props) => {
@@ -14,7 +14,7 @@ export default ({ formData, getParams }: props) => {
     const onFinish = (values: any) => {
         getParams(values)
     };
-    
+
     const resetForm = () => {
         form.resetFields()
     };
@@ -32,7 +32,7 @@ export default ({ formData, getParams }: props) => {
                 name="basic"
                 form={form}
                 onFinish={onFinish}
-                >
+            >
                 {
                     formData.map((i: any) => {
                         return (
@@ -43,27 +43,27 @@ export default ({ formData, getParams }: props) => {
                                 rules={[{ required: i.required, message: i.message }]}
                             >
                                 {
-                                    i.type  === 'input' ? (<Input placeholder={i.message}/>) : (
+                                    i.type === 'input' ? (<Input placeholder={i.message} />) : (
                                         i.type === 'select' ? (
                                             <Select placeholder={i.message} clearIcon>
                                                 <Option value={0}>否</Option>
                                                 <Option value={1}>是</Option>
                                             </Select>
-                                        ) : (<DatePicker placeholder={i.message}/>)
+                                        ) : (<DatePicker placeholder={i.message} />)
                                     )
                                 }
                             </Form.Item>
                         )
                     })
                 }
-                
+
                 <Form.Item>
                     <Space>
                         <Button type="primary" htmlType="submit">查询</Button>
                         <Button onClick={resetForm}>重置</Button>
                     </Space>
                 </Form.Item>
-            </Form>    
+            </Form>
         </div>
     )
 }
