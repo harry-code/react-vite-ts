@@ -4,8 +4,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.1.7",

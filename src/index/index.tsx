@@ -49,16 +49,17 @@ export default TableHoc((props: any) => {
             key: 'materialTypeNames',
             dataIndex: 'materialTypeNames',
             title: '材料类型名称'
+        },
+        {
+            key: 'action',
+            dataIndex: 'action',
+            title: '操作',
+            btns: ['查看', '删除', '提交']
         }
     ]
     // 切换分页与头部筛选，change数据
     const changeData = (data: Object) => {
         getList(data)
-    }
-    function addCountAction(dispatch: any) {  
-        setTimeout(() => {    
-            dispatch({ type: 'plus' })  
-        }, 1000)
     }
 
     return (
