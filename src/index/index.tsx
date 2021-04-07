@@ -13,47 +13,85 @@ export default TableHoc((props: any) => {
     // 头部筛选栏参数
     const formData = [
         {
-            label: '测试1',
-            name: '测试1',
+            label: '材料编号',
+            name: 'materialNo',
             required: false,
             message: '请输入',
             type: 'input',
         },
         {
-            label: '测试2',
-            name: '测试2',
+            label: '材料名称',
+            name: 'materialName',
+            required: false,
+            message: '请输入',
+            type: 'input',
+        },
+        {
+            label: '材料类型',
+            name: 'materialTypeId',
             required: false,
             message: '请选择',
             type: 'select',
         },
         {
-            label: '测试3',
-            name: '测试3',
+            label: '入库食堂',
+            name: 'orgId',
             required: false,
             message: '请选择',
-            type: 'datePicker',
+            type: 'select',
         },
         {
-            label: '测试4',
-            name: '测试4',
+            label: '入库库房',
+            name: 'storeroomId',
             required: false,
-            message: '请输入',
-            type: 'input',
+            message: '请选择',
+            type: 'select',
         },
     ]
     // table的列表项
     const columns = [
         {
-            key: 'materialTypeNames',
-            dataIndex: 'materialTypeNames',
-            title: '材料类型名称'
+            title: '序号',
+            dataIndex: 'index',
+            key: 'index',
+            render: (text: any, record: any, index: number) => `${index + 1}`,
         },
         {
-            key: 'action',
-            dataIndex: 'action',
+            title: '材料编号',
+            dataIndex: 'materialNo',
+            key: 'materialNo',
+        },
+        {
+            title: '材料名称',
+            dataIndex: 'materialName',
+            key: 'materialName',
+        },
+        {
+            title: '单位',
+            dataIndex: 'unit',
+            key: 'unit',
+        },
+        {
+            title: '是否属于猪肉',
+            dataIndex: 'isPork',
+            key: 'isPork',
+            render: (t: number) => (t ? '是' : '否'),
+        },
+        {
+            title: '材料类型',
+            dataIndex: 'materialTypeName',
+            key: 'materialTypeName',
+        },
+        {
+            title: '入库库房',
+            dataIndex: 'storeroomIds',
+            key: 'storeroomIds',
+        },
+        {
             title: '操作',
-            btns: ['查看', '删除', '提交']
-        }
+            key: 'action',
+            btns: ['删除']
+        },
     ]
     // 切换分页与头部筛选，change数据
     const changeData = (data: Object) => {
@@ -62,7 +100,14 @@ export default TableHoc((props: any) => {
 
     return (
         <>
-            <Table changeData={changeData} columns={columns} formData={formData} {...params} addUrl={'/add'} />
+            <Table
+                changeData={changeData}
+                columns={columns}
+                formData={formData}
+                {...params}
+                formStyle={{ layout: 'inline' }}
+                addUrl={'/add'}
+            />
         </>
     )
 }, List)

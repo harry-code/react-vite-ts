@@ -3,23 +3,27 @@ import { useHistory } from "react-router-dom";
 import {
     Form, Input, InputNumber, Mentions,
     Radio, Select, Switch, TimePicker,
-    Transfer, TreeSelect, Upload, Space,
+    Transfer, TreeSelect, Space,
     Button, DatePicker
 } from 'antd';
+import Upload from '~/components/common/upload/index'
 
 // 受控组件的陈述
-export const nodes: { [key: string]: JSX.Element } = {
-    'input': <Input />,
-    'inputNumber': <InputNumber />,
-    'mentions': <Mentions />,
-    'radio': <Radio />,
-    'select': <Select />,
-    'switch': <Switch />,
-    'treeSelect': <TreeSelect />,
-    'datePicker': <DatePicker />,
-    'timePicker': <TimePicker />,
-    'transfer': <Transfer />,
-    'upload': <Upload />,
+export const nodes: { [key: string]: (props?: any) => JSX.Element } = {
+    'input': (props: any) => <Input {...props} />,
+    'inputNumber': (props: any) => <InputNumber {...props} />,
+    'radio': (props: any) => <Radio.Group>{props?.map((i: { value: any; name: React.ReactNode; }) => {
+        return <Radio value={i.value} key={i.value}>{i.name}</Radio>
+    })}</Radio.Group>,
+    'select': (props: any) => <Select>{props?.map((i: { value: any; name: React.ReactNode; }) => {
+        return <Select.Option value={i.value} key={i.value}>{i.name}</Select.Option>
+    })}</Select>,
+    'switch': () => <Switch />,
+    // 'treeSelect': <TreeSelect />,
+    'datePicker': () => <DatePicker />,
+    'timePicker': () => <TimePicker />,
+    // 'transfer': <Transfer />,
+    'upload': () => <Upload />,
 }
 
 interface props {
@@ -30,34 +34,24 @@ interface props {
         name: string;
         tapType: string;
     }[]; // form的按钮们
+    renderProps?: (props?: any) => JSX.Element // 增加额外的按钮
 }
-
 // 默认垂直布局form
 export default function FormComp({
     formData,
+    formStyle,
     getParams,
-    formStyle = { layout: 'horizontal', name: 'from' },
-    formBtns = [
-        {
-            name: '保存',
-            tapType: 'submit',
-        },
-        {
-            name: '返回',
-            tapType: 'back',
-        },
-        {
-            name: '重置',
-            tapType: 'reset',
-        }
-    ]
+    formBtns = [],
+    renderProps = () => <></>,
 }: props) {
     const [form] = Form.useForm();
     const history = useHistory();
     // 按钮事件的陈述
     const onFinish = () => {
-        const values = form.getFieldsValue()
-        getParams(values)
+        form.validateFields().then(() => {
+            const values = form.getFieldsValue()
+            getParams(values)
+        })
     };
 
     const resetForm = () => {
@@ -89,7 +83,7 @@ export default function FormComp({
                             name={i.name}
                             rules={[{ required: i.required, message: i.message }]}
                         >
-                            {nodes[i.type]}
+                            {nodes[i.type](i.options)}
                         </Form.Item>
                     )
                 })
@@ -105,6 +99,8 @@ export default function FormComp({
                                 onClick={btnClicks[i.tapType]}>{i.name}</Button>
                         })
                     }
+                    {/* 渲染额外的btn */}
+                    {renderProps(12)}
                 </Space>
             </Form.Item>
         </Form>

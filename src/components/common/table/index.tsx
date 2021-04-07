@@ -14,10 +14,29 @@ interface props {
     formData: any[];
     addTitle: string;
     addUrl?: string;
+    formStyle?: { [key: string]: string }; // form的样式
+    formBtns?: {
+        name: string;
+        tapType: string;
+    }[]; // form的按钮们
 }
 
 
-export default ({ changeData, loading, columns, data, total, formData, addTitle = '新增', addUrl = '' }: props) => {
+export default ({
+    changeData, loading, columns, data, total,
+    formData, addTitle = '新增', addUrl = '',
+    formStyle = { layout: 'horizontal', name: 'from' },
+    formBtns = [
+        {
+            name: '查询',
+            tapType: 'submit',
+        },
+        {
+            name: '重置',
+            tapType: 'reset',
+        }
+    ]
+}: props) => {
     // 渲染columns最后一列 操作
     useMemo(() => {
         const actionObj = columns.find((i: { key: string; }) => i.key === 'action') ?? {};
@@ -30,7 +49,9 @@ export default ({ changeData, loading, columns, data, total, formData, addTitle 
     // 渲染新增等按钮
     const renderAdd = () => {
         return (
-            addTitle ? (<Link to={addUrl}>{addTitle}</Link>) : null
+            addTitle ? (<Link to={addUrl}>
+                <Button type="primary">{addTitle}</Button>
+            </Link>) : null
         )
     }
     // 头部筛选栏参数
@@ -47,14 +68,19 @@ export default ({ changeData, loading, columns, data, total, formData, addTitle 
     }
     return (
         <div className="table-list-page">
-            <HeadForm formData={formData} getParams={getParams} />
+            <HeadForm
+                formData={formData}
+                getParams={getParams}
+                formStyle={formStyle}
+                formBtns={formBtns}
+            />
             {renderAdd()}
             <Table
                 loading={loading}
                 columns={columns}
                 dataSource={data}
                 pagination={false}
-                rowKey={i => i.supplierId}
+                rowKey={i => i.materialId}
             />
             <Pagination
                 className="page"
