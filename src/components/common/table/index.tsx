@@ -1,5 +1,5 @@
 import { Pagination, Table, Button } from 'antd';
-import HeadForm from '~/components/common/headForm';
+import HeadForm from '~/components/common/form/index';
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './index.less'

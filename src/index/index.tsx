@@ -4,8 +4,6 @@ import TableHoc from '~/components/hoc/table';
 import { List } from '~/service/apis/test';
 
 export default TableHoc((props: any) => {
-    // const count = useSelector(selectCount)
-    // const dispatch = useDispatch();
     useEffect(() => {
         getList(pager);
     }, [])
@@ -17,28 +15,28 @@ export default TableHoc((props: any) => {
         {
             label: '测试1',
             name: '测试1',
-            required: true,
+            required: false,
             message: '请输入',
             type: 'input',
         },
         {
             label: '测试2',
             name: '测试2',
-            required: true,
+            required: false,
             message: '请选择',
             type: 'select',
         },
         {
             label: '测试3',
             name: '测试3',
-            required: true,
+            required: false,
             message: '请选择',
-            type: 'date',
+            type: 'datePicker',
         },
         {
             label: '测试4',
             name: '测试4',
-            required: true,
+            required: false,
             message: '请输入',
             type: 'input',
         },
