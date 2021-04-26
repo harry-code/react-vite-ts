@@ -1,4 +1,5 @@
 import React from "react"
+import LargeFileUpload from '~/components/common/largeFileUpload'
 
 export default () => {
     // new Promise((resolve, reject) => {
@@ -62,10 +63,9 @@ export default () => {
     //         return error
     //     })
     // }
-
     return (
         <div>
-            this is detail
+            <LargeFileUpload />
         </div>
     )
 }

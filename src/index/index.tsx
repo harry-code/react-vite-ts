@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Table from '~/components/common/table/index';
 import TableHoc from '~/components/hoc/table';
 import { List } from '~/service/apis/test';
 
 export default TableHoc((props: any) => {
     useEffect(() => {
-        getList(pager);
+        // getList(pager);
+        console.log('dom', domRef.current)
     }, [])
+
+    const domRef = useRef(null)
 
     // hoc 传过来的参数
     const { getList, pager, ...params } = props;
@@ -108,6 +111,7 @@ export default TableHoc((props: any) => {
                 formStyle={{ layout: 'inline' }}
                 addUrl={'/add'}
             />
+            <div ref={domRef}></div>
         </>
     )
 }, List)

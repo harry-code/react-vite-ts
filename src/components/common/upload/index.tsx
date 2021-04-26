@@ -6,7 +6,7 @@ import { RcFile } from 'antd/lib/upload/interface';
 
 interface pageProps {
     getImgs?: any;
-    imageList?: string | [];
+    imageList?: string;
     max?: number;
     size?: number;
 }

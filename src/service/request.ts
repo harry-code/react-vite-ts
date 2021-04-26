@@ -24,8 +24,8 @@ type API_TYPE = {
 };
 
 export const API_URL: API_TYPE = {
-  // development: 'http://192.168.1.83:8088',
-  development: 'http://wms-server.dev.goktech.cn',
+  development: 'http://124.71.147.249:8004',
+  // development: 'http://wms-server.dev.goktech.cn',
   production: 'http://wms-server.dev.goktech.cn',
 };
 
