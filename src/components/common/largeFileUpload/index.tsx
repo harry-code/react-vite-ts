@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Upload } from '~/service/apis/fileUpload';
-import axios from 'axios';
 import { Input, Button } from 'antd';
+import axios from 'axios';
+
+/**
+ * 大文件上传、断点续传、秒传
+ */
+
 
 function LargeFileUpload() {
-    const SIZE = 4 * 1024 * 1024;
+    const SIZE = 4 * 1024 * 1024; // 分为4m一个
     const fileRef = useRef<any>()
     const [file, setFile] = useState<any>()
     // 选择文件
