@@ -25,7 +25,7 @@ export default function IndexPage({
     // 监听传入的图片字符串
     useEffect(() => {
         if (imageList) {
-            const new_imgList = imageList?.split(',').map((i: any) => {
+            const new_imgList: any = imageList?.split(',').map((i: any) => {
                 return {
                     uid: Math.random(),
                     name: 'image.png',
@@ -52,7 +52,7 @@ export default function IndexPage({
 
     const handleUploadRemove = (file: any) => { };
 
-    const beforeUpload = (file: RcFile, FileList: RcFile[]): boolean | undefined => {
+    const beforeUpload = (file: any): any => {
         if (fileList.length > max) {
             message.error(`最多只能上传${max}张图片`);
             return false;

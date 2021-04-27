@@ -79,7 +79,7 @@ export default () => {
     const getParams = (data: Object) => {
         console.log('data', data)
     }
-    const clickIt = (e) => {
+    const clickIt = (e: any) => {
         console.log('e', e)
     }
     return (
