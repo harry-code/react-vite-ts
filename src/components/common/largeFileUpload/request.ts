@@ -30,6 +30,7 @@ const request = ({
             });
         };
         requestList?.push(xhr)
+        console.log('requestList', requestList)
     });
 }
 

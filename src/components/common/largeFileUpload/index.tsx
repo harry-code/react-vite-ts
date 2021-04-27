@@ -13,7 +13,7 @@ function LargeFileUpload() {
     const SIZE = 4 * 1024 * 1024; // 分为4m一个
     const fileRef = useRef<any>()
     const [file, setFile] = useState<any>()
-    const [requestList, setList] = useState<any[]>()
+    const [requestList, setList] = useState<any[]>([])
 
     // 选择文件
     const changeFile = (e: any) => {
@@ -21,6 +21,7 @@ function LargeFileUpload() {
         if (!file) {
             return
         }
+        console.log('file', file)
         setFile(file)
     }
 
@@ -45,7 +46,15 @@ function LargeFileUpload() {
         const { data: { uploaded } } = await md5FileCheck(fileHash) // 比对文件hash
         if (!uploaded) { // 本文件 未上传过 或者 断点续传
             // 创建上传任务
-            const taskRes = await createFileUpload();
+            const { name, size } = file
+            const taskRes = await createFileUpload({
+                createType: 3,
+                extractionCode: 'MP0L0x',
+                fileDirectoryId: 0,
+                fileName: name,
+                linkSharingRecordNumber: '9049d393a73311ebbcd711d7646f3af4',
+                size
+            });
             // 配置每个分片
             const fileData = fileChunkList?.map(({ file, name }, index) => {
                 return {
@@ -54,7 +63,7 @@ function LargeFileUpload() {
                     hash: name + '-' + index // 特定规则的hash
                 }
             })
-            uploadChunks(fileData, fileHash)
+            uploadChunks(fileData, fileHash, taskRes?.data.taskId, fileChunkList?.length)
         } else { // 秒传
             message.success('文件上传成功！')
         }
@@ -75,21 +84,27 @@ function LargeFileUpload() {
     }
 
     // 上传切片
-    const uploadChunks = async (fileData: any, fileHash: string) => { // 每个切片的 form数据
-        const RequestList = fileData.map(({ chunk, hash }: { chunk: any, hash: any }) => {
+    const uploadChunks = async (fileData: any, fileHash: string, taskId: string, totalChunks: any) => { // 每个切片的 form数据
+        const RequestList = fileData.map(({ chunk, hash }: { chunk: any, hash: any }, index: any) => {
             const formData = new FormData();
+            const { name, size } = file
             formData.append('file', chunk);
-            formData.append('hash', hash);
-            formData.append('filename', file.name);
+            formData.append('filename', name);
+            formData.append('currentChunkSize', chunk.size);
+            formData.append('relativePath', name);
             formData.append('identifier', fileHash);
+            formData.append('taskId', taskId);
+            formData.append('totalChunks', totalChunks);
+            formData.append('totalSize', size);
+            formData.append('chunkNumber', index + 1);
             return { formData }
         }).map(async ({ formData }: { formData: any }) => {
             request({
                 url: UploadUrl(fileHash),
                 data: formData,
+                requestList,
             })
         })
-        setList(RequestList)
         const res = await axios.all(RequestList) // 并发请求
     }
 
@@ -103,7 +118,7 @@ function LargeFileUpload() {
 
     // 恢复上传
     const uploadReset = () => {
-
+        uploadFile()
     }
     return (
         <div>
