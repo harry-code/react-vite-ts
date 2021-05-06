@@ -1,9 +1,24 @@
-import { Button } from "antd";
-import React from "react";
+import { ADD, INFO, EDIT } from '~/service/apis/test';
+import React, { useEffect, useState } from "react";
 import Form from '~/components/common/form/index';
+import { useHistory } from 'react-router-dom';
 
 export default () => {
-    const formData = [
+    const history = useHistory();
+    const { location: { search } } = history;
+    const id = search.split('id=')[1];
+    const [formData, setFormData] = useState<{}>()
+    useEffect(() => {
+        (async function () {
+            if (id) {
+                const res = await INFO(id)
+                if (res?.code === 200) {
+                    setFormData(res.data)
+                }
+            }
+        })()
+    }, [id])
+    const formItems = [
         {
             label: '材料名称',
             name: 'materialName',
@@ -33,7 +48,7 @@ export default () => {
         },
         {
             label: '是否属于猪肉',
-            name: 'orgId',
+            name: 'isPork',
             required: true,
             message: '请选择',
             type: 'radio',
@@ -50,7 +65,7 @@ export default () => {
         },
         {
             label: '入库库房',
-            name: 'storeroomId',
+            name: 'isStoreroom',
             required: false,
             message: '请选择',
             type: 'radio',
@@ -76,17 +91,24 @@ export default () => {
             tapType: 'back'
         }
     ]
-    const getParams = (data: Object) => {
-        console.log('data', data)
-    }
-    const clickIt = (e: any) => {
-        console.log('e', e)
+    const getParams = async (data: Object) => {
+        try {
+            let res;
+            if (id) {
+                res = await EDIT({ ...formData, ...data })
+            } else {
+                res = await ADD(data)
+            }
+            if (res?.code === 200) {
+                history.push('/')
+            }
+        } catch (error) {
+            throw new Error(error)
+        }
     }
     return (
-        <div>
-            <Form formData={formData} getParams={getParams} formBtns={formBtns} renderProps={(v) => {
-                return <Button onClick={() => clickIt(v)}>申请</Button>
-            }} />
-        </div>
+        <>
+            <Form formItems={formItems} getParams={getParams} formBtns={formBtns} formData={formData} />
+        </>
     )
 }

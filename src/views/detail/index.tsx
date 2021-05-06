@@ -63,9 +63,23 @@ export default () => {
     //         return error
     //     })
     // }
+    // interface a {
+    //     name: string
+    // }
+    // interface b {
+    //     age: number
+    // }
+    // const c: (a & b) = {
+    //     name: '1'
+    // }
+    // let someValue: any = "this is a string";
+    // let strLength: number = (someValue as string).length;
+    // console.log('strLength', strLength)
+
     return (
         <div>
-            <LargeFileUpload />
+            {/* <LargeFileUpload /> */}
+            this is detail
         </div>
     )
 }

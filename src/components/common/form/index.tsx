@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import {
     Form, Input, InputNumber, Mentions,
@@ -27,7 +27,8 @@ export const nodes: { [key: string]: (props?: any) => JSX.Element } = {
 }
 
 interface props {
-    formData: any[]; // form项的渲染
+    formItems: any[]; // form项的渲染
+    formData?: {}; // form的数据
     getParams: (data: Object) => void; // form参数获取
     formStyle?: { [key: string]: string }; // form的样式
     formBtns?: {
@@ -38,14 +39,21 @@ interface props {
 }
 // 默认垂直布局form
 export default function FormComp({
-    formData,
+    formItems,
     formStyle,
     getParams,
     formBtns = [],
+    formData,
     renderProps = () => <></>,
 }: props) {
     const [form] = Form.useForm();
     const history = useHistory();
+    // 反显form数据
+    useEffect(() => {
+        if (formData) {
+            form.setFieldsValue(formData)
+        }
+    }, [formData])
     // 按钮事件的陈述
     const onFinish = () => {
         form.validateFields().then(() => {
@@ -75,7 +83,7 @@ export default function FormComp({
             form={form}
         >
             {
-                formData.map((i: any) => {
+                formItems?.map((i: any) => {
                     return (
                         <Form.Item
                             key={i.name}

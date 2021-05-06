@@ -1,20 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Table from '~/components/common/table/index';
 import TableHoc from '~/components/hoc/table';
-import { List } from '~/service/apis/test';
+import { List, DELETE } from '~/service/apis/test';
 
 export default TableHoc((props: any) => {
-    useEffect(() => {
-        // getList(pager);
-        console.log('dom', domRef.current)
-    }, [])
-
-    const domRef = useRef(null)
-
+    // 列表页面涉及的所有接口配置
+    const apis = [
+        {
+            name: 'delete',
+            value: DELETE
+        },
+    ]
     // hoc 传过来的参数
     const { getList, pager, ...params } = props;
+    // 切换分页与头部筛选，change数据
+    const changeData = (data: Object) => {
+        getList(data)
+    }
     // 头部筛选栏参数
-    const formData = [
+    const formItems = [
         {
             label: '材料编号',
             name: 'materialNo',
@@ -93,25 +97,20 @@ export default TableHoc((props: any) => {
         {
             title: '操作',
             key: 'action',
-            btns: ['删除']
+            btns: [{ name: '删除', type: 'delete' }, { name: '编辑', type: 'info' }]
         },
     ]
-    // 切换分页与头部筛选，change数据
-    const changeData = (data: Object) => {
-        getList(data)
-    }
-
     return (
         <>
             <Table
                 changeData={changeData}
                 columns={columns}
-                formData={formData}
+                formItems={formItems}
                 {...params}
+                apis={apis}
                 formStyle={{ layout: 'inline' }}
-                addUrl={'/add'}
+                addUrl={'/info'}
             />
-            <div ref={domRef}></div>
         </>
     )
 }, List)
