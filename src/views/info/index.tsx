@@ -2,6 +2,7 @@ import { ADD, INFO, EDIT } from '~/service/apis/test';
 import React, { useEffect, useState } from "react";
 import Form from '~/components/common/form/index';
 import { useHistory } from 'react-router-dom';
+import { message } from 'antd';
 
 export default () => {
     const history = useHistory();
@@ -100,12 +101,15 @@ export default () => {
                 res = await ADD(data)
             }
             if (res?.code === 200) {
-                history.push('/')
+                message.success('操作成功', 2, () => {
+                    history.push('/')
+                })
             }
         } catch (error) {
             throw new Error(error)
         }
     }
+
     return (
         <>
             <Form formItems={formItems} getParams={getParams} formBtns={formBtns} formData={formData} />
