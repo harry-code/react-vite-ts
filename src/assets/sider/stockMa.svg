@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>库存管理</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="菜单栏交互样式" transform="translate(-20.000000, -472.000000)">
+            <g id="编组-3备份-7" transform="translate(0.000000, 456.000000)">
+                <g id="库存管理" transform="translate(28.000000, 24.000000) scale(-1, 1) translate(-28.000000, -24.000000) translate(20.000000, 16.000000)">
+                    <rect id="矩形" x="0" y="0" width="16" height="16"></rect>
+                    <polygon id="路径-2" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" points="7 15 1 15 1 6.8018578 8 1 15 6.8018578 15 15"></polygon>
+                    <rect id="矩形备份-11" stroke="#06958D" x="9.5" y="9.5" width="3" height="3" rx="1"></rect>
+                    <rect id="矩形备份-12" stroke="#06958D" x="3.5" y="9.5" width="3" height="3" rx="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

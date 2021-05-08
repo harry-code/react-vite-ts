@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63 (92445) - https://sketch.com -->
+    <title>入库管理</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="菜单栏交互样式" transform="translate(-20.000000, -376.000000)">
+            <g id="编组-3备份-5" transform="translate(0.000000, 360.000000)">
+                <g id="入库管理" transform="translate(20.000000, 16.000000)">
+                    <rect id="矩形" x="0" y="0" width="16" height="16"></rect>
+                    <polyline id="路径-2" stroke="#333333" stroke-linecap="round" stroke-linejoin="round" points="1 10.9289545 1 6.8018578 8 1 15 6.8018578 15 15 9.20301242 15"></polyline>
+                    <g id="编组-5" transform="translate(5.828427, 12.828427) rotate(-135.000000) translate(-5.828427, -12.828427) translate(3.828427, 10.828427)" fill="#06958D">
+                        <rect id="矩形" x="0" y="0" width="1" height="4" rx="0.5"></rect>
+                        <rect id="矩形备份-8" transform="translate(2.000000, 3.500000) rotate(-270.000000) translate(-2.000000, -3.500000) " x="1.5" y="1.5" width="1" height="4" rx="0.5"></rect>
+                    </g>
+                    <rect id="矩形备份-9" fill="#06958D" transform="translate(3.828427, 12.828427) rotate(-270.000000) translate(-3.828427, -12.828427) " x="3.32842712" y="9.32842712" width="1" height="7" rx="0.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

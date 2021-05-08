@@ -15,7 +15,7 @@ export default (WrappedComponent: React.ElementType, api: any) => {
     const getList = async (param?: any) => {
       setLoading(true);
       const res = await api(param);
-      if (res.code === 200) {
+      if (res?.code === 200) {
         setList(res.rows);
         setTotal(res.total);
         setLoading(false);
