@@ -11,27 +11,35 @@ const Login = React.lazy(() => import('~/components/common/login'))
 const Sider = React.lazy(() => import('~/components/common/sider'))
 const Header = React.lazy(() => import('~/components/common/header'))
 
+function PrimaryLayout() {
+  return (
+    <div className="main-wrapper">
+      <Header />
+      <div className="main-wrapper-content">
+        <Sider />
+        <Switch>
+          <Route exact path="/"><Index /></Route>
+          <Route path="/detail"><Detail /></Route>
+          <Route path="/info"><Info /></Route>
+        </Switch>
+      </div>
+    </div>
+  )
+}
+
 export default () => (
   <div className="page-content">
     <ErrorBoundary>
       <Suspense fallback={<div>Loading...</div>}>
         <ConfigProvider locale={zhCN}>
           <BrowserRouter>
-            <div className="main-wrapper">
-              <Header />
-              <div className="main-wrapper-content">
-                <Sider />
-                <Switch>
-                  <Route exact path="/"><Index /></Route>
-                  <Route path="/login"><Login /></Route>
-                  <Route path="/detail"><Detail /></Route>
-                  <Route path="/info"><Info /></Route>
-                </Switch>
-              </div>
-            </div>
+            <Switch>
+              <Route path="/login"><Login /></Route>
+              <PrimaryLayout />
+            </Switch>
           </BrowserRouter>
         </ConfigProvider>
       </Suspense>
     </ErrorBoundary>
-  </div>
+  </div >
 )

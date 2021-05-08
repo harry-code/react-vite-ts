@@ -6,10 +6,10 @@ const { SubMenu } = Menu;
 
 function Sider() {
   const history = useHistory();
-  const [rootSubmenuKeys, setKeys] = useState(RoutesData?.map((item: any) => {
-    // item为数组当前的元素
-    return item.path;
-  }))
+  // const [rootSubmenuKeys, setKeys] = useState(RoutesData?.map((item: any) => {
+  //   // item为数组当前的元素
+  //   return item.path;
+  // }))
 
   const handleClick = (e: { key: string }) => {
     history.push(e.key)
