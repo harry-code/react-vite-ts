@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Menu } from 'antd';
 import { RoutesData, routes } from '~/routes';
 import { useHistory } from 'react-router-dom';
+import './index.less'
+
 const { SubMenu } = Menu;
 
 function Sider() {
@@ -11,7 +13,7 @@ function Sider() {
   //   return item.path;
   // }))
 
-  const handleClick = (e: { key: string }) => {
+  const handleClick = (e: any) => {
     history.push(e.key)
   }
   // const onOpenChange = (keys: any[]) => {

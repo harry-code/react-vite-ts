@@ -78,7 +78,7 @@ export default () => {
 
     return (
         <div>
-            {/* <LargeFileUpload /> */}
+            <LargeFileUpload />
             this is detail
         </div>
     )
