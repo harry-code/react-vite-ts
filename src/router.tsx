@@ -10,6 +10,7 @@ const Info = React.lazy(() => import('~/views/info/index'))
 const Login = React.lazy(() => import('~/components/common/login'))
 const Sider = React.lazy(() => import('~/components/common/sider'))
 const Header = React.lazy(() => import('~/components/common/header'))
+const CacheMenu = React.lazy(() => import('~/components/common/cacheMenu'))
 
 function PrimaryLayout() {
   return (
@@ -17,11 +18,13 @@ function PrimaryLayout() {
       <Header />
       <div className="main-wrapper-content">
         <Sider />
-        <Switch>
-          <Route exact path="/"><Index /></Route>
-          <Route path="/detail"><Detail /></Route>
-          <Route path="/info"><Info /></Route>
-        </Switch>
+        <div className="main-wrapper-content-right">
+          <Switch>
+            <Route exact path="/"><Index /></Route>
+            <Route path="/detail"><Detail /></Route>
+            <Route path="/info"><Info /></Route>
+          </Switch>
+        </div>
       </div>
     </div>
   )

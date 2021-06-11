@@ -4,6 +4,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "build_config": "tsc && vite build --config vite.build.config.ts",
     "serve": "vite preview"
   },
   "dependencies": {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Upload, Modal, message } from 'antd';
 import { API_URL } from '~/service/request';
 import { PlusOutlined } from '@ant-design/icons';
-import { RcFile } from 'antd/lib/upload/interface';
 
 interface pageProps {
     getImgs?: any;
