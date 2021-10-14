@@ -23,6 +23,5 @@
     "less": "^4.1.1",
     "typescript": "^4.2.3",
     "vite": "^2.0.1"
-  },
-  "homepage": "https://[username].github.io/github-actions-demo"
+  }
 }
