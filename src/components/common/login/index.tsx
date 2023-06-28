@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.less'
 
 const layout = {
@@ -13,9 +13,9 @@ const tailLayout = {
 
 
 function Login() {
-    const history = useHistory();
+    const history = useNavigate();
     const onFinish = (values: any) => {
-        history.push('/')
+        history('/')
         localStorage.setItem('token', 'lly')
     };
 

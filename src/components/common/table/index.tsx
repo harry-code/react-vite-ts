@@ -1,6 +1,6 @@
 import { Pagination, Table, Button, Modal, message } from 'antd';
 import React, { useState, useMemo } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import HeadForm from '~/components/common/form/index';
 import './index.less'
@@ -42,7 +42,7 @@ export default ({
     ],
     apis
 }: props) => {
-    const history = useHistory();
+    const history = useNavigate();
     // 渲染columns最后一列 操作
     useMemo(() => {
         const actionObj = columns.find((i: { key: string; }) => i.key === 'action') ?? {};
@@ -79,10 +79,7 @@ export default ({
                 });
                 break;
             case 'info': // 查看详情操作
-                history.push({
-                    pathname: '/info',
-                    search: 'id=' + id
-                })
+                history('/info', { state: { id } })
                 break;
             default:
                 break;

@@ -1,12 +1,12 @@
 import { ADD, INFO, EDIT } from '~/service/apis/test';
 import React, { useEffect, useState } from "react";
 import Form from '~/components/common/form/index';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 export default () => {
-    const history = useHistory();
-    const { location: { search } } = history;
-    const id = search.split('id=')[1];
+    const history = useNavigate();
+    const { state } = useLocation();
+    const id = state?.search?.id;
     const [formData, setFormData] = useState<{}>()
     useEffect(() => {
         (async function () {
@@ -100,7 +100,7 @@ export default () => {
                 res = await ADD(data)
             }
             if (res?.code === 200) {
-                history.push('/')
+                history('/')
             }
         } catch (error) {
             throw new Error(error)

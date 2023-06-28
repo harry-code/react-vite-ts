@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
     Form, Input, InputNumber, Mentions,
     Radio, Select, Switch, TimePicker,
@@ -47,7 +47,7 @@ export default function FormComp({
     renderProps = () => <></>,
 }: props) {
     const [form] = Form.useForm();
-    const history = useHistory();
+    const history = useNavigate();
     // 反显form数据
     useEffect(() => {
         if (formData) {
@@ -67,7 +67,7 @@ export default function FormComp({
     };
 
     const backFn = () => {
-        history.goBack()
+        history(-1)
     };
 
     // 按钮事件的映射

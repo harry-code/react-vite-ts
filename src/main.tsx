@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Router from './router';
-import 'antd/dist/antd.less';
+import 'antd/dist/reset.css';
 import '~/assets/common.less';
 
-ReactDOM.render(
-  <Router />,
-  document.getElementById('root')
-)
+const root = createRoot(document.getElementById('root')!);
+root.render(<Router />)
 
 

@@ -1,109 +1,105 @@
-import BaseInfoMa from '~/assets/sider/baseInfoMa.svg';
+// import BaseInfoMa from '~/assets/sider/baseInfoMa.svg';
+import type { MenuProps } from 'antd'
 
-export interface routes {
-    [x: string]: any;
-    title: string;
-    path: string;
-    icon?: string;
-    breadcrumb?: string | JSX.Element;
-    isLink?: boolean;
-    routes?: routes[];
-}
+// export interface routes {
+//     [x: string]: any;
+//     label: string;
+//     key: string;
+//     icon?: string;
+//     breadcrumb?: string | JSX.Element;
+//     isLink?: boolean;
+//     routes?: routes[];
+// }
 
 export interface bread {
     [propname: string]: any;
 }
 
-export const RoutesData: routes[] = [
+export const RoutesData: MenuProps['items'] = [
     {
-        title: '我是菜单1',
-        path: '/base',
-        icon: BaseInfoMa,
-        routes: [
+        label: '我是菜单1',
+        key: '/base',
+        // icon: BaseInfoMa,
+        children: [
             {
-                title: '菜单儿子1',
-                path: '/info',
-                isLink: true,
-                routes: [
+                label: '菜单儿子1',
+                key: '/info',
+                children: [
                     {
-                        title: '新增库房',
-                        path: '/base/warehouse/add',
+                        label: '新增库房',
+                        key: '/base/warehouse/add',
                     },
                     {
-                        title: '编辑库房',
-                        path: '/base/warehouse/edit',
+                        label: '编辑库房',
+                        key: '/base/warehouse/edit',
                     },
                 ],
             },
             {
-                title: '菜单儿子2',
-                path: '/detail',
-                isLink: true,
-                routes: [
+                label: '菜单儿子2',
+                key: '/detail',
+                children: [
                     {
-                        title: '新增材料类型',
-                        path: '/base/materialType/add',
+                        label: '新增材料类型',
+                        key: '/base/materialType/add',
                     },
                     {
-                        title: '编辑材料类型',
-                        path: '/base/materialType/edit',
-                    },
-                ],
-            },
-            {
-                title: '菜单儿子3',
-                path: '/base/material',
-                isLink: true,
-                routes: [
-                    {
-                        title: '新增材料',
-                        path: '/base/material/add',
-                    },
-                    {
-                        title: '编辑材料',
-                        path: '/base/material/edit',
+                        label: '编辑材料类型',
+                        key: '/base/materialType/edit',
                     },
                 ],
             },
             {
-                title: '菜单儿子4',
-                path: '/base/pricing',
-                isLink: true,
-                routes: [
+                label: '菜单儿子3',
+                key: '/base/material',
+                children: [
                     {
-                        title: '新增调价',
-                        path: '/base/pricing/add',
+                        label: '新增材料',
+                        key: '/base/material/add',
                     },
                     {
-                        title: '编辑调价',
-                        path: '/base/pricing/edit',
-                    },
-                    {
-                        title: '调价记录详情',
-                        path: '/base/pricing/recordDetail',
-                    },
-                    {
-                        title: '调价详情',
-                        path: '/base/pricing/applyDetail',
-                    },
-                    {
-                        title: '审核签字',
-                        path: '/base/pricing/pricingApplyNature',
+                        label: '编辑材料',
+                        key: '/base/material/edit',
                     },
                 ],
             },
             {
-                title: '菜单儿子5',
-                path: '/base/supplier',
-                isLink: true,
-                routes: [
+                label: '菜单儿子4',
+                key: '/base/pricing',
+                children: [
                     {
-                        title: '新增供应商',
-                        path: '/base/supplier/add',
+                        label: '新增调价',
+                        key: '/base/pricing/add',
                     },
                     {
-                        title: '编辑供应商',
-                        path: '/base/supplier/edit',
+                        label: '编辑调价',
+                        key: '/base/pricing/edit',
+                    },
+                    {
+                        label: '调价记录详情',
+                        key: '/base/pricing/recordDetail',
+                    },
+                    {
+                        label: '调价详情',
+                        key: '/base/pricing/applyDetail',
+                    },
+                    {
+                        label: '审核签字',
+                        key: '/base/pricing/pricingApplyNature',
+                    },
+                ],
+            },
+            {
+                label: '菜单儿子5',
+                key: '/base/supplier',
+                children: [
+                    {
+                        label: '新增供应商',
+                        key: '/base/supplier/add',
+                    },
+                    {
+                        label: '编辑供应商',
+                        key: '/base/supplier/edit',
                     },
                 ],
             },

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
 import zhCN from 'antd/lib/locale/zh_CN';
 import { ConfigProvider } from 'antd';
 import ErrorBoundary from '~/components/common/ErrorBoundary';
@@ -19,11 +19,7 @@ function PrimaryLayout() {
       <div className="main-wrapper-content">
         <Sider />
         <div className="main-wrapper-content-right">
-          <Switch>
-            <Route exact path="/"><Index /></Route>
-            <Route path="/detail"><Detail /></Route>
-            <Route path="/info"><Info /></Route>
-          </Switch>
+          <Outlet/>
         </div>
       </div>
     </div>
@@ -36,10 +32,14 @@ export default () => (
       <Suspense fallback={<div>Loading...</div>}>
         <ConfigProvider locale={zhCN}>
           <BrowserRouter>
-            <Switch>
-              <Route path="/login"><Login /></Route>
-              <PrimaryLayout />
-            </Switch>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<PrimaryLayout />}>
+                <Route index path="/" element={<Index />} />
+                <Route path="/detail" element={ <Detail />} />
+                <Route path="/info" element={<Info />} />
+              </Route>
+            </Routes>
           </BrowserRouter>
         </ConfigProvider>
       </Suspense>
